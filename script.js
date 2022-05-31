@@ -23,31 +23,31 @@ function playRound(playerSelection, computerSelection) {
     
         return "Tie! Try again."
 
-     } else if ((playerSelection === "rock" && computerSelection === "Scissors")|| (playerSelection === "scissors" && computerSelection === "Paper")
+    } else if ((playerSelection === "rock" && computerSelection === "Scissors")|| (playerSelection === "scissors" && computerSelection === "Paper")
         ||(playerSelection === "paper" && computerSelection === "Rock")){
 
         return "You Win, You Crazy Bastard!"}
+        
+        else ("") 
+            return "Give me a real answer!"
 }
 
-const playerSelection = "PAPER"
+let playerSelection = "";
 const computerSelection = computerPlay();
+
 
 
 function game() {
 
     
+    
     for (let i=0; i<5; i++){
         
-        return playRound(playerSelection, computerSelection)
-
+        playerSelection = prompt("Choose Rock, Paper, or Scissors");
+        console.log (playRound(playerSelection, computerSelection));
     }
-
+    
 }
-
-    
-
-    
-
 
 
 console.log(game());
