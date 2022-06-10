@@ -33,7 +33,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 let playerSelection = "";
-const computerSelection = computerPlay();
+
 
 
 
@@ -48,4 +48,23 @@ function game() {
     }
     
 }
+
+//everytime button is clicked select correct playerSelection
+const onClick = (event) => {
+    playerSelection = event.target.id;
+    
+    const resultsContainer = document.querySelector('#resultsContainer');
+
+    const computerSelection = computerPlay();
+
+    const results = document.createElement('div');
+    
+    results.classList.add('results')
+
+    results.textContent = (playRound(playerSelection, computerSelection));
+
+    resultsContainer.appendChild(results);
+}
+window.addEventListener('click', onClick);
+
 
