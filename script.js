@@ -7,26 +7,29 @@ function computerPlay() {
 
 }
 
-
+const winText = "You Win, You Crazy Bastard!";
+const loseText = "You Lose! And You Suck!";
+const tieText = "Tie! Try again.";
 
 function playRound(playerSelection, computerSelection) {
 
-    playerSelection = playerSelection.toLowerCase();
+    
 
     if ((playerSelection === "rock" && computerSelection === "Paper")|| (playerSelection === "scissors" && computerSelection === "Rock")
     || (playerSelection === "paper" && computerSelection === "Scissors")){
     
-        return "You Lose! And You Suck!"
+        return loseText;
 
     } else if ((playerSelection === "rock" && computerSelection === "Rock")|| (playerSelection === "scissors" && computerSelection === "Scissors")
     ||(playerSelection === "paper" && computerSelection === "Paper")){
     
-        return "Tie! Try again."
+        return tieText;
 
     } else if ((playerSelection === "rock" && computerSelection === "Scissors")|| (playerSelection === "scissors" && computerSelection === "Paper")
         ||(playerSelection === "paper" && computerSelection === "Rock")){
 
-        return "You Win, You Crazy Bastard!"}
+        return winText;
+    }
         
         else ("") 
             return "Give me a real answer!"
@@ -49,6 +52,38 @@ function game() {
     
 }
 
+let winScore = 0;
+let loseScore = 0;
+let tieScore = 0;
+
+function score () {
+
+const win = document.querySelector('#win');
+const lose = document.querySelector('#lose');
+const tie = document.querySelector('#tie');
+
+if (playRound () == winText) {
+
+winScore = winScore + 1;
+win.textContent = winScore;
+
+scoreContainer.appendChild(win);
+}
+
+else if (playRound () == loseText) {
+loseScore = loseScore + 1;
+lose.textContent = loseScore;
+scoreContainer.appendChild(lose);
+}
+
+else (playRound () == tieText) 
+    tieScore = tieScore + 1;
+
+    tie.textContent = tieScore;
+    scoreContainer.appendChild(tie);
+
+}
+
 //everytime button is clicked select correct playerSelection
 const onClick = (event) => {
     playerSelection = event.target.id;
@@ -64,7 +99,15 @@ const onClick = (event) => {
     results.textContent = (playRound(playerSelection, computerSelection));
 
     resultsContainer.appendChild(results);
+  
+    
+    return score();
+
+    
 }
+
+//count
+
 window.addEventListener('click', onClick);
 
 
