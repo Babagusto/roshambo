@@ -1,113 +1,114 @@
 let choices = ["Rock","Paper","Scissors"];
-
-
-function computerPlay() {
-
-    return choices[Math.floor(Math.random() * choices.length)]
-
-}
-
+let winScore = 0;
+let loseScore = 0;
+let tieScore = 0;
 const winText = "You Win, You Crazy Bastard!";
 const loseText = "You Lose! And You Suck!";
 const tieText = "Tie! Try again.";
+let playerSelection = "";
+const rpc = document.querySelector('.rpc');
+
+
+function computerPlay() {
+    return choices[Math.floor(Math.random() * choices.length)]
+}
 
 function playRound(playerSelection, computerSelection) {
-
-    
-
     if ((playerSelection === "rock" && computerSelection === "Paper")|| (playerSelection === "scissors" && computerSelection === "Rock")
     || (playerSelection === "paper" && computerSelection === "Scissors")){
     
         return loseText;
+        loseScore++;
 
     } else if ((playerSelection === "rock" && computerSelection === "Rock")|| (playerSelection === "scissors" && computerSelection === "Scissors")
     ||(playerSelection === "paper" && computerSelection === "Paper")){
     
         return tieText;
+        tieScore++;
 
     } else if ((playerSelection === "rock" && computerSelection === "Scissors")|| (playerSelection === "scissors" && computerSelection === "Paper")
         ||(playerSelection === "paper" && computerSelection === "Rock")){
 
         return winText;
+        winScore = winScore++;
     }
-        
-        else ("") 
-            return "Give me a real answer!"
 }
 
-let playerSelection = "";
-
-
-
-
 function game() {
-
-    
     
     for (let i=0; i<5; i++){
         
         playerSelection = prompt("Choose Rock, Paper, or Scissors");
         console.log (playRound(playerSelection, computerSelection));
     }
+}
+
+window.addEventListener('click', selection);
+
+function selection (button) {
+    playerSelection = button.target.id;
+    const computerSelection = computerPlay();
+    results.textContent = (playRound(playerSelection, computerSelection));
+    win.textContent = winScore;
+    lose.textContent = loseScore;
+    tie.textContent = tieScore;
+
+
+    if (playRound(playerSelection, computerSelection) === winText) {
+        winScore++;
+    }
+    else if (playRound(playerSelection, computerSelection) === loseText) {
+        loseScore++;
+    }
+    else if (playRound(playerSelection, computerSelection) === tieText) 
+        tieScore++;
     
 }
 
-let winScore = 0;
-let loseScore = 0;
-let tieScore = 0;
 
-function score () {
 
-const win = document.querySelector('#win');
-const lose = document.querySelector('#lose');
-const tie = document.querySelector('#tie');
-
-if (playRound () == winText) {
-
-winScore = winScore + 1;
-win.textContent = winScore;
-
-scoreContainer.appendChild(win);
-}
-
-else if (playRound () == loseText) {
-loseScore = loseScore + 1;
-lose.textContent = loseScore;
-scoreContainer.appendChild(lose);
-}
-
-else (playRound () == tieText) 
-    tieScore = tieScore + 1;
-
-    tie.textContent = tieScore;
-    scoreContainer.appendChild(tie);
-
-}
 
 //everytime button is clicked select correct playerSelection
-const onClick = (event) => {
-    playerSelection = event.target.id;
+//const onClick = (button) => {
+    //playerSelection = button.target.id;
     
-    const resultsContainer = document.querySelector('#resultsContainer');
+    //const resultsContainer = document.querySelector('#resultsContainer');
 
-    const computerSelection = computerPlay();
+    //const computerSelection = computerPlay();
 
-    const results = document.createElement('div');
+    //const results = document.createElement('div');
     
-    results.classList.add('results')
+    //results.classList.add('results')
 
-    results.textContent = (playRound(playerSelection, computerSelection));
+    //results.textContent = (playRound(playerSelection, computerSelection));
 
-    resultsContainer.appendChild(results);
-  
+    //resultsContainer.appendChild(results);
+
+
+    //const scoreContainer = document.querySelector('#scoreContainer');
+
+    //const win = document.getElementById('.win');
     
-    return score();
-
+    //win.textContent = 0;
     
-}
+    //scoreContainer.appendChild(win);
+    
+    //return score();
+
+
 
 //count
 
-window.addEventListener('click', onClick);
+//window.addEventListener('click', onClick);
+
+//Win/Lose/Tie Scorekeeping
+
+
+
+
+
+
+
+
 
 
