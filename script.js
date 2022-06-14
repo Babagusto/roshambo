@@ -6,7 +6,6 @@ const winText = "You Win, You Crazy Bastard!";
 const loseText = "You Lose! And You Suck!";
 const tieText = "Tie! Try again.";
 let playerSelection = "";
-const rpc = document.querySelector('.rpc');
 
 
 function computerPlay() {
@@ -18,92 +17,78 @@ function playRound(playerSelection, computerSelection) {
     || (playerSelection === "paper" && computerSelection === "Scissors")){
     
         return loseText;
-        loseScore++;
+        
 
     } else if ((playerSelection === "rock" && computerSelection === "Rock")|| (playerSelection === "scissors" && computerSelection === "Scissors")
     ||(playerSelection === "paper" && computerSelection === "Paper")){
     
         return tieText;
-        tieScore++;
+        
 
     } else if ((playerSelection === "rock" && computerSelection === "Scissors")|| (playerSelection === "scissors" && computerSelection === "Paper")
         ||(playerSelection === "paper" && computerSelection === "Rock")){
 
         return winText;
-        winScore = winScore++;
+        
     }
+
+        
 }
+
+
 
 function game() {
     
     for (let i=0; i<5; i++){
-        
+       
         playerSelection = prompt("Choose Rock, Paper, or Scissors");
         console.log (playRound(playerSelection, computerSelection));
+       
     }
 }
 
 window.addEventListener('click', selection);
 
+//Player selection and scoring
+
 function selection (button) {
+
     playerSelection = button.target.id;
     const computerSelection = computerPlay();
     results.textContent = (playRound(playerSelection, computerSelection));
     win.textContent = winScore;
     lose.textContent = loseScore;
     tie.textContent = tieScore;
-
+    
 
     if (playRound(playerSelection, computerSelection) === winText) {
         winScore++;
     }
     else if (playRound(playerSelection, computerSelection) === loseText) {
         loseScore++;
+        
     }
-    else if (playRound(playerSelection, computerSelection) === tieText) 
+    else if (playRound(playerSelection, computerSelection) === tieText) {
         tieScore++;
-    
+    }
+    gameOver()
 }
 
+function gameOver () {
+    if (winScore > 5) {
+        alert("Hell Yeah, You Win!")
+        winScore = 0;
+        loseScore = 0;
+        tieScore = 0;
+    }
 
-
-
-//everytime button is clicked select correct playerSelection
-//const onClick = (button) => {
-    //playerSelection = button.target.id;
-    
-    //const resultsContainer = document.querySelector('#resultsContainer');
-
-    //const computerSelection = computerPlay();
-
-    //const results = document.createElement('div');
-    
-    //results.classList.add('results')
-
-    //results.textContent = (playRound(playerSelection, computerSelection));
-
-    //resultsContainer.appendChild(results);
-
-
-    //const scoreContainer = document.querySelector('#scoreContainer');
-
-    //const win = document.getElementById('.win');
-    
-    //win.textContent = 0;
-    
-    //scoreContainer.appendChild(win);
-    
-    //return score();
-
-
-
-//count
-
-//window.addEventListener('click', onClick);
-
-//Win/Lose/Tie Scorekeeping
-
-
+    else if (loseScore > 5) {
+        alert("Damn, The Computer Won")
+        winScore = 0;
+        loseScore = 0;
+        tieScore = 0;
+    }
+}
 
 
 
